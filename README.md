@@ -74,45 +74,87 @@ public static int getScreenHeight(Activity activity) {
     }
 ```
 
-判断虚拟按键是否显示：
+检测是否具有底部导航栏
 
 ```
-	/**
-     * 虚拟按键是否打开
-     *
-     * @param activity
-     * @return
-     */
-    public static boolean isNavigationBarShown(Activity activity) {
-        //虚拟键的view,为空或者不可见时是隐藏状态
-        View view = activity.findViewById(android.R.id.navigationBarBackground);
-        if (view == null) {
-            return false;
-        }
-        int visible = view.getVisibility();
-        if (visible == View.GONE || visible == View.INVISIBLE) {
-            return false;
+	private static boolean checkDeviceHasNavigationBar(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            WindowManager windowManager = activity.getWindowManager();
+            Display display = windowManager.getDefaultDisplay();
+            DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+            display.getRealMetrics(realDisplayMetrics);
+            int realHeight = realDisplayMetrics.heightPixels;
+            int realWidth = realDisplayMetrics.widthPixels;
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            display.getMetrics(displayMetrics);
+            int displayHeight = displayMetrics.heightPixels;
+            int displayWidth = displayMetrics.widthPixels;
+            return (realWidth - displayWidth) > 0 || (realHeight - displayHeight) > 0;
         } else {
-            return true;
+            boolean hasNavigationBar = false;
+            Resources resources = activity.getResources();
+            int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
+            if (id > 0) {
+                hasNavigationBar = resources.getBoolean(id);
+            }
+            try {
+                Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+                Method m = systemPropertiesClass.getMethod("get", String.class);
+                String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+                if ("1".equals(navBarOverride)) {
+                    hasNavigationBar = false;
+                } else if ("0".equals(navBarOverride)) {
+                    hasNavigationBar = true;
+                }
+            } catch (Exception e) {
+            }
+            return hasNavigationBar;
         }
     }
 ```
 
-获取虚拟按键真实高度：
+有底部导航栏时，底部导航栏是否可见:
+
+```
+private static boolean isNavigationBarVisible(Activity activity) {
+        boolean show = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Display display = activity.getWindow().getWindowManager().getDefaultDisplay();
+            Point point = new Point();
+            display.getRealSize(point);
+            View decorView = activity.getWindow().getDecorView();
+            Configuration conf = activity.getResources().getConfiguration();
+            if (Configuration.ORIENTATION_LANDSCAPE == conf.orientation) {
+                View contentView = decorView.findViewById(android.R.id.content);
+                show = (point.x != contentView.getWidth());
+            } else {
+                Rect rect = new Rect();
+                decorView.getWindowVisibleDisplayFrame(rect);
+                show = (rect.bottom != point.y);
+            }
+        }
+        return show;
+    }
+```
+
+
+获取底部导航栏真实高度：
 
 ```
 	/**
-     * 获取当前虚拟键高度(隐藏后高度为0)
+     * 获取当前底部导航栏高度(隐藏后高度为0)
      *
      * @param activity
      * @return
      */
-    public static int getCurrentNavigationBarHeight(Activity activity) {
-        if (isNavigationBarShown(activity)) {
-            return getNavigationBarHeight(activity);
-        } else {
-            return 0;
+     public static int getCurrentNavigationBarHeight(Activity activity) {
+        int navigationBarHeight = 0;
+        Resources resources = activity.getResources();
+        int resourceId = resources.getIdentifier(isPortrait(activity) ? "navigation_bar_height" : "navigation_bar_height_landscape", "dimen", "android");
+        if (resourceId > 0 && checkDeviceHasNavigationBar(activity) && isNavigationBarVisible(activity)) {
+            navigationBarHeight = resources.getDimensionPixelSize(resourceId);
         }
+        return navigationBarHeight;
     }
 ```
 
