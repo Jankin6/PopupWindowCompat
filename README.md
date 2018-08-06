@@ -1,14 +1,14 @@
 # PopupWindowCompact
 兼容android 7.x , 8.0 etc的Popwindow
 
-##问题描述
+##问题描述##
 前段时间发现Popupwindow在8.0的手机上显示成全屏了，搜了下发现7.0以上就有这个问题了，好久没写Popwindow了，才知道（尴尬）。于是总结了在以下情况可能出问题：
 
 1. 当设置PopupWindow 的高度为 MATCH_PARENT，调用 showAsDropDown(View anchor) 时，在 7.0 之前，会在 anchor 下边缘到屏幕底部之间显示 PopupWindow；而在 7.0系统上（包括7.1, 8.0）的 PopupWindow 会占据整个屏幕（除状态栏之外）。
 2. 当设置PopupWindow 的高度为 WRAP_CONTENT，调用 showAsDropDown(View anchor) 时，没有兼容性问题。
 3. 当设置PopupWindow 的高度为自定义的值height，调用 showAsDropDown(View anchor)时， 如果 height > anchor 下边缘与屏幕底部的距离， 则还是会出现7.0以上显示异常的问题；否则，不会出现该问题。
 
-##问题解决
+##问题解决##
 好了，现在我们知道问题出现的情况了，上网搜了很多解决方案，发现都不能完美解决问题，如以下代码：
 
 ```
