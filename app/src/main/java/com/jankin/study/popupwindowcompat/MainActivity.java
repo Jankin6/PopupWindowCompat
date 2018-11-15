@@ -1,17 +1,15 @@
-package com.jankin.study.popupwindowcompact;
+package com.jankin.study.popupwindowcompat;
 
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.widget.PopupWindowCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.PopupWindow;
 
-import com.jankin.study.lib.PopupWindowCompact;
+import com.jankin.popupwindowcompat.lib.PopupWindowCompat;
+import com.jankin.study.popupwindowcompact.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showMatchPopupwindow(){
-        PopupWindowCompact popupWindow = new PopupWindowCompact(this);
+        PopupWindowCompat popupWindow = new PopupWindowCompat(this);
         View contentView = LayoutInflater.from(this).inflate(R.layout.ppw_layout, null);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showWrapPopupwindow(){
-        PopupWindowCompact popupWindow = new PopupWindowCompact(this);
+        PopupWindowCompat popupWindow = new PopupWindowCompat(this);
         View contentView = LayoutInflater.from(this).inflate(R.layout.ppw_layout, null);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFixPopupwindow(){
-        PopupWindowCompact popupWindow = new PopupWindowCompact(this);
+        PopupWindowCompat popupWindow = new PopupWindowCompat(this);
         View contentView = LayoutInflater.from(this).inflate(R.layout.ppw_layout, null);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(300);

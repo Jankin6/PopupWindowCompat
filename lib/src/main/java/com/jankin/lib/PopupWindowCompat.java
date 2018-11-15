@@ -1,4 +1,4 @@
-package com.jankin.study.lib;
+package com.jankin.popupwindowcompat.lib;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,45 +9,45 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.jankin.study.lib.utli.OsUtils;
+import com.jankin.popupwindowcompat.lib.utli.OsUtils;
 
 /**
  * 兼容android 7.x , 8.0 etc
  */
 
-public class PopupWindowCompact extends PopupWindow {
-    public PopupWindowCompact(Context context) {
+public class PopupWindowCompat extends PopupWindow {
+    public PopupWindowCompat(Context context) {
         super(context);
     }
 
-    public PopupWindowCompact(Context context, AttributeSet attrs) {
+    public PopupWindowCompat(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public PopupWindowCompact(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PopupWindowCompat(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public PopupWindowCompact(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public PopupWindowCompat(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public PopupWindowCompact() {
+    public PopupWindowCompat() {
     }
 
-    public PopupWindowCompact(View contentView) {
+    public PopupWindowCompat(View contentView) {
         super(contentView);
     }
 
-    public PopupWindowCompact(int width, int height) {
+    public PopupWindowCompat(int width, int height) {
         super(width, height);
     }
 
-    public PopupWindowCompact(View contentView, int width, int height) {
+    public PopupWindowCompat(View contentView, int width, int height) {
         super(contentView, width, height);
     }
 
-    public PopupWindowCompact(View contentView, int width, int height, boolean focusable) {
+    public PopupWindowCompat(View contentView, int width, int height, boolean focusable) {
         super(contentView, width, height, focusable);
     }
 
