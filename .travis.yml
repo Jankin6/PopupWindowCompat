@@ -5,7 +5,7 @@ env:
   global:
     - ANDROID_API=28
     - EMULATOR_API=26
-    - ANDROID_BUILD_TOOLS=27.0.3
+    - ANDROID_BUILD_TOOLS=26.0.2
     - ADB_INSTALL_TIMEOUT=5 # minutes
 
 android:
@@ -14,19 +14,22 @@ android:
     - platform-tools
     - build-tools-$ANDROID_BUILD_TOOLS
     - android-$ANDROID_API
-    - android-$EMULATOR_API_LEVEL
     - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+  licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
 
-licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
+notifications:
+  email: false
 
-script:
-  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+sudo: false
+
+script: 
+  - "./gradlew clean build check -PdisablePreDex --stacktrace"
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
