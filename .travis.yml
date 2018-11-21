@@ -14,6 +14,7 @@ android:
     - platform-tools
     - build-tools-$ANDROID_BUILD_TOOLS
     - android-$ANDROID_API
+    - android-$EMULATOR_API_LEVEL
     - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
@@ -25,7 +26,7 @@ licenses:
   - google-gdk-license-.+
 
 script:
-  - "./gradlew clean build check -PdisablePreDex --stacktrace"
+  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
