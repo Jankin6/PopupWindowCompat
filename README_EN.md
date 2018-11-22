@@ -1,26 +1,26 @@
 # PopupWindowCompat
 [![Build Status](https://travis-ci.com/wang0826jj/PopupWindowCompat.svg?branch=master)](https://travis-ci.com/wang0826jj/PopupWindowCompat) [![Bintray](https://api.bintray.com/packages/wang0826jj/maven/PopupWindowCompat/images/download.svg)](https://bintray.com/wang0826jj/maven/PopupWindowCompat/_latestVersion) [![GitHub license](https://img.shields.io/github/license/wang0826jj/PopupWindowCompat.svg)](https://github.com/wang0826jj/PopupWindowCompat/blob/master/LICENSE)
 
-## [English](README_EN.md) | 中文
+## English | [中文](README.md)
 
-一个兼容android 7.x , 8.x etc系统的Popwindow，主要适配当设置高度为match_parent时，调用`popupWindow.showAsDropDown()`后的高度全屏问题，同时适配了是否有虚拟按键，虚拟按键是否显示的情况。
+A compatible Popwindow adapt android 7.x , 8.x etc, Mainly adapts to the height of the full-screen problem after calling `popupWindow.showAsDropDown()` when setting the height to match_parent, and adapting whether there is a virtual button and whether the virtual button is displayed.
 
-## 添加到项目
+## Adding to your project
 
 ```groovy
 implementation 'com.jankin.popupwindowcompat:lib:1.0.1'
 ```
 
-## 使用
+## Simple Usage
 
-使用PopupWindowCompat替代PopupWindow，用法和PopupWindow一样。
+Use PopupWindowCompat instead of PopupWindow, the same as PopupWindow.
 
-## 效果图
+## Screenshots
 
 ![screenshot](screenshot.gif)
 
 
 
-## 传送门
+## Gateway
 
-- [博客文章](https://blog.csdn.net/Kelaker/article/details/81274417)
+- [Blog posts](https://blog.csdn.net/Kelaker/article/details/81274417)
