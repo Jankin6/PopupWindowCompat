@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jankin.lib" />
+    package="com.jankin.popupwindowcompat.lib" />

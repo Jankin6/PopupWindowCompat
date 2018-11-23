@@ -39,7 +39,7 @@ publish {
     groupId = 'com.jankin.popupwindowcompat'
     artifactId = 'lib'
     uploadName = 'PopupWindowCompat'
-    publishVersion = "1.0.1"
+    publishVersion = "1.0.2"
     desc = 'a compat library for PopupWindow'
     website = 'https://github.com/wang0826jj/PopupWindowCompat'
 }

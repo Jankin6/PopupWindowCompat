@@ -1,4 +1,4 @@
-package com.jankin.popupwindowcompat.lib.utli;
+package com.jankin.popupwindowcompat.lib.util;
 
 import android.app.Activity;
 import android.content.Context;

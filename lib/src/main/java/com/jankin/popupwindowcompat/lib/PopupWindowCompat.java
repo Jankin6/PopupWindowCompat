@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.jankin.popupwindowcompat.lib.utli.OsUtils;
+import com.jankin.popupwindowcompat.lib.util.OsUtils;
 
 /**
  * 兼容android 7.x , 8.0 etc
