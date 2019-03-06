@@ -8,7 +8,7 @@ A compatible Popwindow adapt android 7.x , 8.x etc, Mainly adapts to the height 
 ## Adding to your project
 
 ```groovy
-implementation 'com.jankin.popupwindowcompat:lib:1.0.2'
+implementation 'com.jankin.popupwindowcompat:lib:1.0.3'
 ```
 
 ## Simple Usage

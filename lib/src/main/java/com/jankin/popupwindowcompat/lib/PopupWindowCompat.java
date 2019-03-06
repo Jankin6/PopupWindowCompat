@@ -51,22 +51,13 @@ public class PopupWindowCompat extends PopupWindow {
         super(contentView, width, height, focusable);
     }
 
-    @Override
-    public void showAsDropDown(View anchor) {
-        showAsDropDown(anchor, 0, 0);
-    }
-
-    @Override
-    public void showAsDropDown(View anchor, int xoff, int yoff) {
-        showAsDropDown(anchor, xoff, yoff, Gravity.TOP | Gravity.START);
-    }
 
     @Override
     public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
 
         // 7.0 以下或者高度为WRAP_CONTENT, 默认显示
         if (Build.VERSION.SDK_INT < 24 || getHeight() == ViewGroup.LayoutParams.WRAP_CONTENT) {
-            super.showAsDropDown(anchor, xoff, yoff, gravity);
+            showCompatSuper(anchor, xoff, yoff, gravity);
         } else {
             if (getContentView().getContext() instanceof Activity) {
                 Activity activity = (Activity) getContentView().getContext();
@@ -80,16 +71,22 @@ public class PopupWindowCompat extends PopupWindow {
                 int maxHeight = screenHeight - location[1] - anchor.getHeight();
                 // popupwindow  有具体的高度值，但是小于anchor下边缘与屏幕底部的距离， 正常显示
                 if(getHeight() > 0 && getHeight() < maxHeight){
-                    super.showAsDropDown(anchor, xoff, yoff, gravity);
+                    showCompatSuper(anchor, xoff, yoff, gravity);
                 }else {
                     // match_parent 或者 popwinddow的具体高度值大于anchor下边缘与屏幕底部的距离， 都设置为最大可用高度
                     setHeight(maxHeight);
-                    super.showAsDropDown(anchor, xoff, yoff, gravity);
+                    showCompatSuper(anchor, xoff, yoff, gravity);
                 }
 
             }
         }
+    }
 
-
+    // 解决andorid4.3及以下异常 java.lang.NoSuchMethodError: android.widget.PopupWindow.showAsDropDown
+    private void showCompatSuper(View anchor, int xoff, int yoff, int gravity) {
+        if (Build.VERSION.SDK_INT > 18)
+            super.showAsDropDown(anchor, xoff, yoff, gravity);
+        else
+            super.showAsDropDown(anchor, xoff, yoff);
     }
 }
