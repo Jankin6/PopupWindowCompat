@@ -8,7 +8,7 @@
 ## 添加到项目
 
 ```groovy
-implementation 'com.jankin.popupwindowcompat:lib:1.0.3'
+implementation 'com.jankin.popupwindowcompat:lib:1.0.4'
 ```
 
 ## 使用

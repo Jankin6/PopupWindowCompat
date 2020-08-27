@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
@@ -68,11 +67,11 @@ public class PopupWindowCompat extends PopupWindow {
                 // 获取控件在屏幕的位置
                 anchor.getLocationOnScreen(location);
                 // 算出popwindow最大高度
-                int maxHeight = screenHeight - location[1] - anchor.getHeight();
+                int maxHeight = screenHeight - location[1] - anchor.getHeight() - yoff;
                 // popupwindow  有具体的高度值，但是小于anchor下边缘与屏幕底部的距离， 正常显示
-                if(getHeight() > 0 && getHeight() < maxHeight){
+                if (getHeight() > 0 && getHeight() < maxHeight) {
                     showCompatSuper(anchor, xoff, yoff, gravity);
-                }else {
+                } else {
                     // match_parent 或者 popwinddow的具体高度值大于anchor下边缘与屏幕底部的距离， 都设置为最大可用高度
                     setHeight(maxHeight);
                     showCompatSuper(anchor, xoff, yoff, gravity);
